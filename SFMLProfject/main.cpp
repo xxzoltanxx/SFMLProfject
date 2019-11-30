@@ -9,3 +9,23 @@ int main()
 {
 	return 0;
 }
+
+enum class ObserverMessage
+{
+
+};
+struct ObserverPayload
+{
+	ObserverMessage type;
+	int mReceiver;
+
+	bool mBool;
+	float mX, mY;
+	int mInt;
+};
+
+class Observer
+{
+public:
+	virtual void notify(ObserverPayload payload) = 0;
+};

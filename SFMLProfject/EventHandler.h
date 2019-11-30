@@ -39,6 +39,10 @@ class EventHandler
 public:
 	void update();
 	void handleEvent(sf::Event& event);
+	template <typename T> void registerCallback(std::string bind,void (T::* func)(EventInfo info), T* instance)
+	{
+		mCallbacks.emplace(bind, std::bind(func, instance, std::placeholders::_1));
+	}
 private:
 	std::unordered_map<std::string, Binding*> mBindings;
 	std::unordered_map<std::string, std::function<void(EventInfo& info)>> mCallbacks;
