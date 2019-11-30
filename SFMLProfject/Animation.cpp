@@ -1,5 +1,5 @@
 #include "Animation.h"
-#include "CSpriteSheet.h"
+#include "SpriteSheet.h"
 #include "TextureManager.h"
 
 Animation::Animation(std::string texture, unsigned short frameCount, float frameSte, SpriteSheet* shee, sf::Vector2i cellSiz)
