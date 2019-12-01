@@ -1,4 +1,33 @@
+#include <fstream>
+#include <sstream>
+
 #include "EventHandler.h"
+#include "Utilities.h"
+
+EventHandler::EventHandler(const std::string& keysConfig)
+{
+	currentState = State::GameState;
+	std::string path = Utils::GetWorkingDirectory() + keysConfig;
+	std::ifstream ifs(path);
+	std::string line;
+	while (std::getline(ifs, line))
+	{
+		std::stringstream ss(line);
+		std::string bindingName;
+		ss >> bindingName;
+		std::string separated;
+		mBindings[bindingName] = new Binding();
+		while (ss >> separated)
+		{
+			auto delimiter = separated.find(':');
+			int firstVal = std::stoi(separated.substr(0, delimiter));
+			int secondVal = std::stoi(separated.substr(delimiter, separated.length() - delimiter));
+			EventData data = EventData();
+			data.keyCode = secondVal;
+			mBindings[bindingName]->mEvents.push_back(std::make_pair(RegisteredEvent(firstVal), data));
+		}
+	}
+}
 
 void EventHandler::update()
 {
@@ -26,7 +55,7 @@ void EventHandler::update()
 		}
 		if (a.second->count == a.second->mEvents.size())
 		{
-			mCallbacks[a.second->name](a.second->info);
+			mCallbacks[getCurrentState()][a.second->name](a.second->info);
 		}
 		a.second->count = 0;
 	}

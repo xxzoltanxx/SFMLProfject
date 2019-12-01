@@ -19,7 +19,6 @@ public:
 	};
 };
 
-using Callbacks = std::unordered_map<State, std::unordered_map<std::string, std::function<void(EventInfo& info)>>>;
 
 struct EventInfo
 {
@@ -36,9 +35,14 @@ public:
 	std::vector<std::pair<RegisteredEvent, EventData>> mEvents;
 	int count = 0;
 };
+
+using Container = std::unordered_map<std::string, std::function<void(EventInfo& info)>>;
+using Callbacks = std::unordered_map<State, Container>;
+
 class EventHandler
 {
 public:
+	EventHandler(const std::string& keysConfig);
 	void update();
 	void handleEvent(sf::Event& event);
 	template <typename T> void registerCallback(State state, std::string bind,void (T::* func)(EventInfo& info), T* instance)
@@ -49,7 +53,10 @@ public:
 		}
 		mCallbacks[state].emplace(bind, std::bind(func, instance, std::placeholders::_1));
 	}
+	void setCurrentState(State s) { currentState = s; }
+	State getCurrentState() { currentState; }
 private:
 	std::unordered_map<std::string, Binding*> mBindings;
 	Callbacks mCallbacks;
+	State currentState;
 };
