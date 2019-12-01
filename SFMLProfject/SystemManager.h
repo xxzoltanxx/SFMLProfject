@@ -13,6 +13,8 @@ public:
 	{
 		entityManager = mgr;
 	}
+	SystemManager();
+	~SystemManager();
 
 	void update(float dt);
 	void handleEvents();
@@ -33,9 +35,10 @@ public:
 		}
 	}
 
+	void purgeSystems();
 	MessageHandler messageHandler;
 private:
 	std::unordered_map<System, SBase*> systems;
 	std::unordered_map<unsigned int, EventQueue> entityEventQueues;
-	EntityManager* entityManager;
+	EntityManager* entityManager = nullptr;
 };

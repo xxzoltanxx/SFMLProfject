@@ -4,7 +4,7 @@
 #include "CDrawable.h"
 #include "CPosition.h"
 
-SRenderer::SRenderer(SystemManager* mgr, System sysId)
+SRenderer::SRenderer(SystemManager* mgr)
 	:SBase(mgr, System::Renderer)
 {
 	requirementFlags.push_back((1 << (int)ComponentType::Position) | (1 << (int)ComponentType::Sprite));
@@ -46,4 +46,9 @@ void SRenderer::update(float dt)
 			sheet->update(dt);
 		}
 	}
+}
+
+void SRenderer::notify(const ObserverPayload& payload)
+{
+
 }

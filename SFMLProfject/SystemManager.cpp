@@ -1,4 +1,24 @@
 #include "SystemManager.h"
+#include "SRenderer.h"
+
+SystemManager::SystemManager()
+{
+	systems[System::Renderer] = new SRenderer(this);
+}
+
+SystemManager::~SystemManager()
+{
+	purgeSystems();
+}
+
+void SystemManager::purgeSystems()
+{
+	for (auto& a : systems)
+	{
+		delete a.second;
+	}
+}
+
 void SystemManager::handleEvents()
 {
 	SystemEvent event;

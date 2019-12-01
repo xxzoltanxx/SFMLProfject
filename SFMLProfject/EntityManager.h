@@ -37,6 +37,8 @@ public:
 		}
 		return static_cast<T*>(*Component);
 	}
+
+	void purgeEntities();
 private:
 	template <typename T> void registerComponent(ComponentType type)
 	{

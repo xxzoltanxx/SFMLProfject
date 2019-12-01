@@ -76,8 +76,6 @@ int EntityManager::addEntity(int flag)
 	return id;
 }
 
-
-
 void EntityManager::removeEntity(int id)
 {
 	auto iter = mEntities.find(id);
@@ -87,4 +85,12 @@ void EntityManager::removeEntity(int id)
 	}
 	systemManager->removeEntity(id);
 	mEntities.erase(iter);
+}
+
+void EntityManager::purgeEntities()
+{
+	for (auto& a : mEntities)
+	{
+		removeEntity(a.first);
+	}
 }
