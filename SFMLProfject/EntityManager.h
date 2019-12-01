@@ -15,10 +15,7 @@ class SystemManager;
 class EntityManager
 {
 public:
-	EntityManager(SystemManager* manager)
-	{
-		systemManager = manager;
-	}
+	EntityManager(SystemManager* manager);
 	int addEntity(int flag);
 	int addEntityFromFile(const std::string& file);
 	void removeEntity(int id);

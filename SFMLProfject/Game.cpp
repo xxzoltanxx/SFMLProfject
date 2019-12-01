@@ -47,6 +47,8 @@ void Game::run()
 			update(frameTime.asSeconds());
 			elapsedTime -= frameTime;
 		}
+		window->clear();
 		draw();
+		window->display();
 	}
 }

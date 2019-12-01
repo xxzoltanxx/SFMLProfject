@@ -30,7 +30,7 @@ void StateManager::addState(State state)
 {
 	states.push_back(stateFactory[state]());
 	sharedContext.eventHandler->setCurrentState(state);
-	//states.back()->onCreate();
+	states.back()->onCreate();
 }
 
 void StateManager::removeState(State state)
@@ -38,7 +38,7 @@ void StateManager::removeState(State state)
 	auto stateIter = std::find_if(states.begin(), states.end(), [state](BaseState* stateIter)->bool { return state == stateIter->stateId; });
 	if (stateIter != states.end())
 	{
-		//(*stateIter)->onDestroy();
+		(*stateIter)->onDestroy();
 		delete (*stateIter);
 		states.erase(stateIter);
 	}

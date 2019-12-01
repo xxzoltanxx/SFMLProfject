@@ -2,6 +2,18 @@
 #include "SystemManager.h"
 #include <fstream>
 #include "Utilities.h"
+
+#include "CPosition.h"
+#include "CDrawable.h"
+
+EntityManager::EntityManager(SystemManager* manager)
+{
+	registerComponent<CPosition>(ComponentType::Position);
+	registerComponent<CSpriteSheet>(ComponentType::SpriteSheet);
+	registerComponent<CSprite>(ComponentType::Sprite);
+	systemManager = manager;
+}
+
 void EntityManager::addComponent(int entityId, ComponentType type)
 {
 	auto& entity = mEntities[entityId];
@@ -16,6 +28,7 @@ void EntityManager::addComponentFromStream(int entityId, ComponentType type, std
 	entity.flag |= (1 << (int)type);
 	CBase* component = componentFactory[type]();
 	is >> component;
+	entity.components.push_back(component);
 }
 
 void EntityManager::removeComponent(int entityId, ComponentType type)
@@ -32,12 +45,12 @@ int EntityManager::addEntityFromFile(const std::string& file)
 {
 	int id = mIdCounter++;
 	mEntities[id] = Entity();
-
+	std::string dir = Utils::GetWorkingDirectory();
 	std::ifstream ifs(Utils::GetWorkingDirectory() + file);
 	while (!ifs.eof())
 	{
 		std::string type;
-		ifs >> type;
+		std::getline(ifs, type);
 		std::string line;
 		std::getline(ifs, line);
 
