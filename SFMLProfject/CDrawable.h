@@ -69,6 +69,10 @@ public:
 	{
 		sheet->setPosition(pos);
 	}
+	void update(float dt)
+	{
+		sheet->update(dt);
+	}
 
 private:
 	void readIn(std::stringstream& is) override

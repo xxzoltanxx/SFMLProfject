@@ -20,6 +20,7 @@ public:
 	void addEvent(SystemEvent event, const unsigned int& entityId);
 	void removeEntity(const unsigned int& entityId);
 	void entityModified(const unsigned int& entityId, const unsigned int& entityMask);
+	EntityManager* getEntityManager() { return entityManager; }
 
 	template <typename T> T* getSystem(System system)
 	{

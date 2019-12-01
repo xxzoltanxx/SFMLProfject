@@ -5,6 +5,7 @@
 
 class CPosition : public CBase
 {
+public:
 	CPosition()
 		:CBase(ComponentType::Position)
 	{

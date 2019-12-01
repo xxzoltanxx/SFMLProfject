@@ -31,6 +31,10 @@ public:
 	{
 		auto& entity = mEntities[entityId];
 		auto Component = std::find_if(entity.components.begin(), entity.components.end(), [component](CBase* item)-> bool {return item->getType = component; });
+		if (Component = entity.components.end())
+		{
+			return nullptr;
+		}
 		return static_cast<T*>(*Component);
 	}
 private:
