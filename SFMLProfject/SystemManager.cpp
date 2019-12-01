@@ -83,5 +83,5 @@ void SystemManager::removeEntity(const unsigned int& entityId)
 
 void SystemManager::draw(sf::RenderTarget& target)
 {
-	//TODO once SRenderer is set up
+	static_cast<SRenderer*>(systems[System::Renderer])->draw(target);
 }
