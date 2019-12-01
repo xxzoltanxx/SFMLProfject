@@ -1,5 +1,7 @@
 #include "SpriteSheet.h"
 #include "Animation.h"
+#include <fstream>
+#include <sstream>
 
 void SpriteSheet::draw(sf::RenderTarget& target)
 {
@@ -51,10 +53,13 @@ SpriteSheet::~SpriteSheet()
 	}
 }
 
-void SpriteSheet::readIn(std::stringstream& is)
+void SpriteSheet::readIn(const std::string& path)
 {
-	while (!is.eof())
+	std::ifstream is(path);
+	std::string line;
+	while (std::getline(is, line))
 	{
+		std::stringstream ss(line);
 		std::string animationName;
 		std::string texture;
 		int frameNum;
@@ -62,7 +67,7 @@ void SpriteSheet::readIn(std::stringstream& is)
 		int cellSizeX;
 		int cellSizeY;
 
-		is >> animationName >> texture >> frameNum >> frameStep >> cellSizeX >> cellSizeY;
+		ss >> animationName >> texture >> frameNum >> frameStep >> cellSizeX >> cellSizeY;
 		Animation* toInsert = new Animation(texture, (unsigned short) frameNum, frameStep, this, sf::Vector2i(cellSizeX, cellSizeY));
 		mAnimations[animationName] = toInsert;
 	}

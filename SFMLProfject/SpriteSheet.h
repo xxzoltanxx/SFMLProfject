@@ -19,7 +19,7 @@ public:
 
 	~SpriteSheet();
 private:
-	void readIn(std::stringstream& is);
+	void readIn(const std::string& path);
 
 	sf::Sprite sprite;
 	std::unordered_map<std::string, Animation*> mAnimations;

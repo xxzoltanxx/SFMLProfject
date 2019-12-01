@@ -54,6 +54,9 @@
     <ClCompile Include="EntityManager.cpp">
       <Filter>Source Files\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="MessageHandler.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CBase.h">
@@ -81,6 +84,12 @@
       <Filter>Source Files\EventHandler</Filter>
     </ClInclude>
     <ClInclude Include="EntityManager.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageHandler.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
       <Filter>Source Files\ECS</Filter>
     </ClInclude>
   </ItemGroup>
