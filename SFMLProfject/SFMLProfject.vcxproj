@@ -178,6 +178,7 @@
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="SystemManager.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

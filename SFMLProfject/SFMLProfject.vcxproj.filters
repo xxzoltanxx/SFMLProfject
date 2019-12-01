@@ -36,9 +36,6 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\Animation</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteSheet.cpp">
-      <Filter>Source Files\Animation</Filter>
-    </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>Source Files\ResourceManagers</Filter>
     </ClCompile>
@@ -68,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="SRenderer.cpp">
       <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteSheet.cpp">
+      <Filter>Source Files\Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="SRenderer.h">
       <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
