@@ -45,7 +45,7 @@ public:
 protected:
 	void setupPaths(const std::string& file)
 	{
-		std::string workingDirectory = Utils::getWorkingDirectory();
+		std::string workingDirectory = Utils::GetWorkingDirectory();
 		std::ifstream ifs(workingDirectory + file);
 		std::string resource;
 		std::string path;

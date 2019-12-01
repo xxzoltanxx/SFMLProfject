@@ -54,7 +54,7 @@ public:
 		mCallbacks[state].emplace(bind, std::bind(func, instance, std::placeholders::_1));
 	}
 	void setCurrentState(State s) { currentState = s; }
-	State getCurrentState() { currentState; }
+	State getCurrentState() { return currentState; }
 private:
 	std::unordered_map<std::string, Binding*> mBindings;
 	Callbacks mCallbacks;

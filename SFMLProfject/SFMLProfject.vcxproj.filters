@@ -69,6 +69,12 @@
     <ClCompile Include="SpriteSheet.cpp">
       <Filter>Source Files\Animation</Filter>
     </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -123,6 +129,12 @@
       <Filter>Source Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Source Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

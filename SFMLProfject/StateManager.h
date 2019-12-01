@@ -25,6 +25,7 @@ struct Context
 class StateManager
 {
 public:
+	StateManager(Context sharedContext);
 	void addState(State state);
 	void removeState(State state);
 
@@ -35,7 +36,7 @@ public:
 private:
 	template <typename T> void registerState(State state)
 	{
-		stateFactory[state] = []()-> BaseState * { return new T(); };
+		stateFactory[state] = [this]()-> BaseState * { return new T(this); };
 	}
 	std::vector<BaseState*> states;
 	std::unordered_map<State, std::function<BaseState* ()>> stateFactory;

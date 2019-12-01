@@ -148,6 +148,8 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="EventQueue.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
     <ClCompile Include="SBase.cpp" />
     <ClCompile Include="SpriteSheet.cpp" />
@@ -166,6 +168,8 @@
     <ClInclude Include="CPosition.h" />
     <ClInclude Include="CDrawable.h" />
     <ClInclude Include="EventQueue.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="MessageHandler.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="SBase.h" />

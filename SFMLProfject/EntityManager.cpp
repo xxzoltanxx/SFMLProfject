@@ -60,6 +60,7 @@ int EntityManager::addEntityFromFile(const std::string& file)
 		}
 	}
 	systemManager->entityModified(id, mEntities[id].flag);
+	return id;
 }
 
 int EntityManager::addEntity(int flag)

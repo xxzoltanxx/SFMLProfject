@@ -17,6 +17,9 @@ public:
 	virtual void draw(sf::RenderTarget& target) = 0;
 	virtual void update(float dt) = 0;
 
+	virtual void onCreate() = 0;
+	virtual void onDestroy() = 0;
+
 	bool getIsTranslucent() const { return isTranslucent; }
 	bool getIsTranscendent() const { return isTranscendent; }
 protected:
