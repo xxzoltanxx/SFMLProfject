@@ -57,6 +57,12 @@
     <ClCompile Include="MessageHandler.cpp">
       <Filter>Source Files\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="EventQueue.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="SBase.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -90,6 +96,12 @@
       <Filter>Source Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="CBase.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="EventQueue.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="SBase.h">
       <Filter>Source Files\ECS</Filter>
     </ClInclude>
   </ItemGroup>

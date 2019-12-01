@@ -10,6 +10,7 @@ bool EventQueue::pollEvent(SystemEvent& event)
 	if (mEvents.empty()) return false;
 	event = mEvents.front();
 	mEvents.pop();
+	return true;
 }
 
 void EventQueue::clear()

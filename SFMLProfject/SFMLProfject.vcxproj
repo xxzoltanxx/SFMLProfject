@@ -147,7 +147,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
+    <ClCompile Include="SBase.cpp" />
     <ClCompile Include="SpriteSheet.cpp" />
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EventHandler.cpp" />
@@ -159,8 +161,10 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="CBase.h" />
+    <ClInclude Include="EventQueue.h" />
     <ClInclude Include="MessageHandler.h" />
     <ClInclude Include="Observer.h" />
+    <ClInclude Include="SBase.h" />
     <ClInclude Include="SpriteSheet.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EventHandler.h" />
