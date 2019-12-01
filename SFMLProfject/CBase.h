@@ -6,6 +6,7 @@ enum class ComponentType
 {
 	Position = 0,
 	SpriteSheet = 1,
+	Sprite = 2
 };
 
 class CBase

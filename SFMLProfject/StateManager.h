@@ -6,16 +6,20 @@
 #include "State.h"
 
 class EventHandler;
+class SystemManager;
+class EntityManager;
 
 struct Context
 {
-	Context(sf::RenderWindow& win, EventHandler* handler)
-		: window(win), eventHandler(handler)
+	Context(sf::RenderWindow& win, EventHandler* handler, SystemManager* sysMgr, EntityManager* entMgr)
+		: window(win), eventHandler(handler), systemManager(sysMgr), entityManager(entMgr)
 	{
 	}
 
 	sf::RenderWindow& window;
 	EventHandler* eventHandler;
+	SystemManager* systemManager;
+	EntityManager* entityManager;
 };
 
 class StateManager
