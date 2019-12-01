@@ -5,17 +5,13 @@
 #include <algorithm>
 namespace Utils {
 #ifdef RUNNING_WINDOWS
-#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
-#include <Shlwapi.h>
 	inline std::string GetWorkingDirectory() {
 		HMODULE hModule = GetModuleHandle(nullptr);
 		if (hModule) {
 			char path[256];
-			GetModuleFileName(hModule, path, sizeof(path));
-			PathRemoveFileSpec(path);
-			strcat_s(path, "\\"); // new
-			return std::string(path); // new
+			GetCurrentDirectory(256, path);
+			return std::string(path) + "\\"; // new
 		}
 		return "";
 	}

@@ -18,8 +18,8 @@ public:
 		text->loadFromFile(paths[resource]);
 		return text;
 	}
-
+	void setupPaths(const std::string& file);
 private:
-	TextureManager() : ResourceManager("textures.cfg") {}
+	TextureManager() : ResourceManager() { setupPaths("textures.cfg"); }
 	static TextureManager* instance;
 };

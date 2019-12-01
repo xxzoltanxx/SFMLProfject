@@ -2,14 +2,11 @@
 #include <unordered_map>
 #include <fstream>
 
-#include "Utilities.h"
-
 template <typename Derived, typename T> class ResourceManager
 {
 public:
-	ResourceManager(std::string file)
+	ResourceManager()
 	{
-		setupPaths(file);
 	}
 	T* request(std::string resource)
 	{
@@ -43,17 +40,6 @@ public:
 	}
 
 protected:
-	void setupPaths(const std::string& file)
-	{
-		std::string workingDirectory = Utils::GetWorkingDirectory();
-		std::ifstream ifs(workingDirectory + file);
-		std::string resource;
-		std::string path;
-		while (ifs >> resource >> path)
-		{
-			paths[resource] = workingDirectory + path;
-		}
-	}
 	T* load(std::string resource)
 	{
 		return static_cast<Derived*>(this)->load(resource);
