@@ -154,6 +154,7 @@
     <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SRenderer.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="SystemManager.cpp" />
@@ -162,6 +163,8 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="CBase.h" />
+    <ClInclude Include="CPosition.h" />
+    <ClInclude Include="CDrawable.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="MessageHandler.h" />
     <ClInclude Include="Observer.h" />
@@ -170,6 +173,7 @@
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SRenderer.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="SystemManager.h" />

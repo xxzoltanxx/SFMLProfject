@@ -66,6 +66,9 @@
     <ClCompile Include="SystemManager.cpp">
       <Filter>Source Files\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="SRenderer.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -108,6 +111,15 @@
       <Filter>Source Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="SystemManager.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="CPosition.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawable.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="SRenderer.h">
       <Filter>Source Files\ECS</Filter>
     </ClInclude>
   </ItemGroup>

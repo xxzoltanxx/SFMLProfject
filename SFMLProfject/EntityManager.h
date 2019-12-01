@@ -30,8 +30,8 @@ public:
 	template <typename T> T* getComponent(int entityId, ComponentType component)
 	{
 		auto& entity = mEntities[entityId];
-		auto Component = std::find_if(entity.components.begin(), entity.components.end(), [component](CBase* item)-> bool {return item->getType = component; });
-		if (Component = entity.components.end())
+		auto Component = std::find_if(entity.components.begin(), entity.components.end(), [component](CBase* item)-> bool {return item->getType() == component; });
+		if (Component == entity.components.end())
 		{
 			return nullptr;
 		}
