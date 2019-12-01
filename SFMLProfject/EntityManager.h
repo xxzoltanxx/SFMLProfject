@@ -20,9 +20,11 @@ public:
 		systemManager = manager;
 	}
 	int addEntity(int flag);
+	int addEntityFromFile(const std::string& file);
 	void removeEntity(int id);
 
 	void addComponent(int entityId, ComponentType type);
+	void addComponentFromStream(int entityId, ComponentType type, std::stringstream& is);
 	void removeComponent(int entityId, ComponentType type);
 
 	template <typename T> T* getComponent(int entityId, ComponentType component)
