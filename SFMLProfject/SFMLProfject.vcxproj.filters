@@ -63,6 +63,9 @@
     <ClCompile Include="SBase.cpp">
       <Filter>Source Files\ECS</Filter>
     </ClCompile>
+    <ClCompile Include="SystemManager.cpp">
+      <Filter>Source Files\ECS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -102,6 +105,9 @@
       <Filter>Source Files\ECS</Filter>
     </ClInclude>
     <ClInclude Include="SBase.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemManager.h">
       <Filter>Source Files\ECS</Filter>
     </ClInclude>
   </ItemGroup>

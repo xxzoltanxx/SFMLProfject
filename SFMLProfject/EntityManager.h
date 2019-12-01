@@ -11,9 +11,14 @@ struct Entity
 	std::vector<CBase*> components;
 };
 
+class SystemManager;
 class EntityManager
 {
 public:
+	EntityManager(SystemManager* manager)
+	{
+		systemManager = manager;
+	}
 	int addEntity(int flag);
 	void removeEntity(int id);
 
@@ -34,4 +39,5 @@ private:
 	std::unordered_map<int, Entity> mEntities;
 	std::unordered_map<ComponentType, std::function<CBase* ()>> componentFactory;
 	int mIdCounter = 0;
+	SystemManager* systemManager;
 };
