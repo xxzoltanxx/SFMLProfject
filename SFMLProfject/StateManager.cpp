@@ -1,4 +1,5 @@
 #include "StateManager.h"
+#include "EventHandler.h"
 void StateManager::draw()
 {
 	for (int i = states.size() - 1; i >= 0; --i)
@@ -22,9 +23,11 @@ void StateManager::update(float dt)
 		}
 	}
 }
+
 void StateManager::addState(State state)
 {
 	states.push_back(stateFactory[state]());
+	sharedContext.eventHandler->setCurrentState(state);
 }
 
 void StateManager::removeState(State state)
@@ -35,4 +38,6 @@ void StateManager::removeState(State state)
 		delete (*stateIter);
 		states.erase(stateIter);
 	}
+	if (states.size() > 0)
+		sharedContext.eventHandler->setCurrentState(states.back()->stateId);
 }
