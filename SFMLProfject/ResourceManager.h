@@ -1,6 +1,9 @@
 #pragma once
 #include <unordered_map>
 #include <fstream>
+
+#include "Utilities.h"
+
 template <typename Derived, typename T> class ResourceManager
 {
 public:
@@ -42,12 +45,13 @@ public:
 protected:
 	void setupPaths(const std::string& file)
 	{
-		std::ifstream ifs(file);
+		std::string workingDirectory = Utils::getWorkingDirectory();
+		std::ifstream ifs(workingDirectory + file);
 		std::string resource;
 		std::string path;
 		while (ifs >> resource >> path)
 		{
-			paths[resource] = path;
+			paths[resource] = workingDirectory + path;
 		}
 	}
 	T* load(std::string resource)

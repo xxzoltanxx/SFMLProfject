@@ -1,6 +1,7 @@
 #include "EntityManager.h"
 #include "SystemManager.h"
 #include <fstream>
+#include "Utilities.h"
 void EntityManager::addComponent(int entityId, ComponentType type)
 {
 	auto& entity = mEntities[entityId];
@@ -32,7 +33,7 @@ int EntityManager::addEntityFromFile(const std::string& file)
 	int id = mIdCounter++;
 	mEntities[id] = Entity();
 
-	std::ifstream ifs(file);
+	std::ifstream ifs(Utils::GetWorkingDirectory() + file);
 	while (!ifs.eof())
 	{
 		std::string type;

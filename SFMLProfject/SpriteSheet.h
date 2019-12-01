@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "CBase.h"
+#include "Utilities.h"
 
 class Animation;
 
@@ -12,7 +13,7 @@ class SpriteSheet
 public:
 	SpriteSheet(const std::string& sheetFile)
 	{
-		readIn(sheetFile);
+		readIn(Utils::GetWorkingDirectory() + sheetFile);
 	}
 	void cropSprite(sf::Texture* texture, const sf::IntRect& textureRect);
 	void update(float dt);
