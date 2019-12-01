@@ -55,7 +55,7 @@ int EntityManager::addEntityFromFile(const std::string& file)
 		}
 		else
 		{
-			throw std::runtime_error("SOMETHING WENT WRONG WITH LOADING THE ENTITIES!");
+			throw std::runtime_error("SOMETHING WENT WRONG WITH LOADING THE ENTITY " + std::to_string(id));
 		}
 	}
 	systemManager->entityModified(id, mEntities[id].flag);
