@@ -62,13 +62,13 @@ void SpriteSheet::readIn(const std::string& path)
 		std::stringstream ss(line);
 		std::string animationName;
 		std::string texture;
-		int frameNum;
+		unsigned short frameNum;
 		float frameStep;
 		int cellSizeX;
 		int cellSizeY;
 
 		ss >> animationName >> texture >> frameNum >> frameStep >> cellSizeX >> cellSizeY;
-		Animation* toInsert = new Animation(texture, (unsigned short) frameNum, frameStep, this, sf::Vector2i(cellSizeX, cellSizeY));
+		Animation* toInsert = new Animation(texture, frameNum, frameStep, this, sf::Vector2i(cellSizeX, cellSizeY));
 		mAnimations[animationName] = toInsert;
 	}
 }
