@@ -18,7 +18,7 @@ public:
 	void removeEntity(const unsigned int& entityId);
 	virtual void handleEvent(unsigned int entityId, SystemEvent event) = 0;
 	virtual void update(float dt) = 0;
-private:
+protected:
 	System systemId;
 	std::vector<unsigned int> mEntities;
 	std::vector<unsigned int> requirementFlags;
