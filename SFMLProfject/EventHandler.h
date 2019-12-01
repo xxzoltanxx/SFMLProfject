@@ -39,7 +39,7 @@ class EventHandler
 public:
 	void update();
 	void handleEvent(sf::Event& event);
-	template <typename T> void registerCallback(std::string bind,void (T::* func)(EventInfo info), T* instance)
+	template <typename T> void registerCallback(std::string bind,void (T::* func)(EventInfo& info), T* instance)
 	{
 		mCallbacks.emplace(bind, std::bind(func, instance, std::placeholders::_1));
 	}
