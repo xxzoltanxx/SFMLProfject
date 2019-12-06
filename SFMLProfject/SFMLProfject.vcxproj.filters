@@ -146,8 +146,5 @@
     <ClInclude Include="FontManager.h">
       <Filter>Source Files\ResourceManagers</Filter>
     </ClInclude>
-    <ClInclude Include="GUIElement.h">
-      <Filter>Source Files\GUI</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

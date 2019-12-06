@@ -172,7 +172,6 @@
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
-    <ClInclude Include="GUIElement.h" />
     <ClInclude Include="MessageHandler.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="SBase.h" />
