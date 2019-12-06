@@ -8,6 +8,11 @@ public:
 	ResourceManager()
 	{
 	}
+	T* getResource(std::string resource)
+	{
+		return resources[resource].first;
+	}
+
 	T* request(std::string resource)
 	{
 		if (resources.find(resource) == resources.end())

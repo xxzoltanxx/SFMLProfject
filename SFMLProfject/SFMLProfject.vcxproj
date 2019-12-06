@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="EventQueue.cpp" />
+    <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
@@ -168,8 +169,10 @@
     <ClInclude Include="CPosition.h" />
     <ClInclude Include="CDrawable.h" />
     <ClInclude Include="EventQueue.h" />
+    <ClInclude Include="FontManager.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GUIElement.h" />
     <ClInclude Include="MessageHandler.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="SBase.h" />
