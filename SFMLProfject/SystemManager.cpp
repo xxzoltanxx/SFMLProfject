@@ -57,6 +57,7 @@ void SystemManager::update(float dt)
 	{
 		a.second->update(dt);
 	}
+	handleEvents();
 }
 
 void SystemManager::addEvent(SystemEvent event, const unsigned int& entityId)
