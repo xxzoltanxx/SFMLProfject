@@ -43,8 +43,8 @@ class GUIElement
 protected:
 	virtual void draw(sf::RenderTarget& target) = 0;
 	virtual void update(float dt) = 0;
-	virtual void onHover(const sf::Vector2f& pos) = 0;
-	virtual void onClick(const sf::Vector2f& pos) = 0;
+	virtual void onHover(const sf::Vector2i& pos) = 0;
+	virtual void onClick(const sf::Vector2i& pos) = 0;
 	virtual void onRelease() = 0;
 	virtual void onLeave() = 0;
 
@@ -58,6 +58,7 @@ protected:
 	bool isControl() const {
 		return mIsControl;
 	}
+	bool isWithin(const sf::Vector2i& position);
 	void updateStyle(GUIState state, const GUIStyle& style);
 	void setState(GUIState state);
 	void setRedraw(bool redraw) { mNeedsRedraw = redraw; }
@@ -110,19 +111,18 @@ struct GUIEvent
 
 class GUIInterface : public GUIElement
 {
-public:
+private:
 	void redrawContent();
 	void redrawControls();
 	void redrawBackdrop();
 
 	void update(float dt) override;
 	void draw(sf::RenderTarget& target) override;
-	void onHover(const sf::Vector2f& position) override;
-	void onClick(const sf::Vector2f& position) override;
+	void onHover(const sf::Vector2i& position) override;
+	void onClick(const sf::Vector2i& position) override;
 	void onRelease() override;
 	void onLeave() override;
 
-private:
 	std::unordered_map<std::string, GUIElement*> mElements;
 	bool mNeedsContentRedraw;
 	bool mNeedsControlRedraw;
@@ -130,4 +130,11 @@ private:
 	sf::RenderTexture* mBackdrop;
 	sf::RenderTexture* mContent;
 	sf::RenderTexture* mControls;
+
+	sf::Sprite mBackdropSprite;
+	sf::Sprite mContentSprite;
+	sf::Sprite mControlSprite;
+
+	float mHorizontalScroll;
+	float mVerticalScroll;
 };
