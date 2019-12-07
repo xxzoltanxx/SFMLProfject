@@ -45,7 +45,7 @@ protected:
 	virtual void update(float dt) = 0;
 	virtual void onHover(const sf::Vector2f& pos) = 0;
 	virtual void onClick(const sf::Vector2f& pos) = 0;
-	virtual void onRelese() = 0;
+	virtual void onRelease() = 0;
 	virtual void onLeave() = 0;
 
 	void setPosition(const sf::Vector2f& newPos);
@@ -53,6 +53,7 @@ protected:
 	{
 		return mPosition;
 	}
+	sf::Vector2f getGlobalPosition() const;
 
 	bool isControl() const {
 		return mIsControl;
@@ -81,4 +82,52 @@ protected:
 	std::string text;
 
 	GUIInterface* mParent;
+};
+
+enum class GUIEventType
+{
+	Enter,
+	Exit,
+	Click,
+	Release
+};
+
+struct ClickCoordinates
+{
+	float x, y;
+};
+
+struct GUIEvent
+{
+	GUIEventType type;
+	const char* interface;
+	const char* element;
+	union
+	{
+		ClickCoordinates coords;
+	};
+};
+
+class GUIInterface : public GUIElement
+{
+public:
+	void redrawContent();
+	void redrawControls();
+	void redrawBackdrop();
+
+	void update(float dt) override;
+	void draw(sf::RenderTarget& target) override;
+	void onHover(const sf::Vector2f& position) override;
+	void onClick(const sf::Vector2f& position) override;
+	void onRelease() override;
+	void onLeave() override;
+
+private:
+	std::unordered_map<std::string, GUIElement*> mElements;
+	bool mNeedsContentRedraw;
+	bool mNeedsControlRedraw;
+	bool mNeedsBackdropRedraw;
+	sf::RenderTexture* mBackdrop;
+	sf::RenderTexture* mContent;
+	sf::RenderTexture* mControls;
 };

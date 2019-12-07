@@ -94,3 +94,14 @@ void GUIElement::setState(GUIState state)
 	}
 	mCurrentState = state;
 }
+
+sf::Vector2f GUIElement::getGlobalPosition() const
+{
+	sf::Vector2f position = getPosition();
+	if (mParent && mParent != this)
+	{
+		sf::Vector2f parentPosition = mParent->getGlobalPosition();
+		position = position + parentPosition;
+	}
+	return position;
+}
