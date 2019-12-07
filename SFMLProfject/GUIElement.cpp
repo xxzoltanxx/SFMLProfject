@@ -156,6 +156,7 @@ void GUIInterface::onRelease()
 			//ADD event to queue in GUIMANAGER
 		}
 	}
+	setState(GUIState::Normal);
 }
 
 void GUIInterface::onClick(const sf::Vector2i& position)
@@ -175,6 +176,7 @@ void GUIInterface::onClick(const sf::Vector2i& position)
 			//ADD event to queue in GUIMANAGER
 		}
 	}
+	setState(GUIState::Click);
 }
 
 void GUIInterface::draw(sf::RenderTarget& target)
