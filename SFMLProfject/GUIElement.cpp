@@ -157,6 +157,7 @@ void GUIInterface::onRelease()
 		}
 	}
 	setState(GUIState::Normal);
+	mNeedsBackdropRedraw = true;
 }
 
 void GUIInterface::onClick(const sf::Vector2i& position)
@@ -177,6 +178,7 @@ void GUIInterface::onClick(const sf::Vector2i& position)
 		}
 	}
 	setState(GUIState::Click);
+	mNeedsBackdropRedraw = true;
 }
 
 void GUIInterface::draw(sf::RenderTarget& target)
