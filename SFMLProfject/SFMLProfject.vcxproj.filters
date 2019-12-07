@@ -81,6 +81,9 @@
     <ClCompile Include="FontManager.cpp">
       <Filter>Source Files\ResourceManagers</Filter>
     </ClCompile>
+    <ClCompile Include="GUIElement.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="FontManager.h">
       <Filter>Source Files\ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIElement.h">
+      <Filter>Source Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
