@@ -96,6 +96,7 @@ protected:
 
 class GUILabel : public GUIElement
 {
+public:
 	GUILabel(std::string elementName, GUIInterface* parent);
 	void draw(sf::RenderTarget& target) override;
 	void update(float dt) override;
@@ -137,9 +138,9 @@ class GUIInterface : public GUIElement
 public:
 	void adjustContentSize();
 	void addButton(std::string label, std::string elementName);
-private:
 	GUIInterface(GUIManager*, std::string);
 	~GUIInterface();
+private:
 	void redrawContent();
 	void redrawControls();
 	void redrawBackdrop();

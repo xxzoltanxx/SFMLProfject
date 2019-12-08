@@ -8,6 +8,7 @@
 class EventHandler;
 class SystemManager;
 class EntityManager;
+class GUIManager;
 
 struct Context
 {
@@ -20,6 +21,7 @@ struct Context
 	EventHandler* eventHandler;
 	SystemManager* systemManager;
 	EntityManager* entityManager;
+	GUIManager* guiManager = nullptr;
 };
 
 class StateManager

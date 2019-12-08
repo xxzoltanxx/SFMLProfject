@@ -11,9 +11,9 @@ struct EventInfo;
 class GUIManager
 {
 public:
-	GUIManager(Context sharedContext);
+	GUIManager(Context sharedContext, EventHandler* handler);
 	void setCurrentState(State state);
-	void addInterface(State state, GUIInterface* interface);
+	void addInterface(State state, GUIInterface* interface, std::string name);
 
 	void update(float dt);
 	void handleClick(EventInfo& info);

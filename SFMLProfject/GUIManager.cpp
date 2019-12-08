@@ -45,9 +45,9 @@ void GUIManager::setCurrentState(State state)
 	mCurrentState = state;
 }
 
-void GUIManager::addInterface(State state, GUIInterface* interface)
+void GUIManager::addInterface(State state, GUIInterface* interface, std::string name)
 {
-	mGuiMappings[state].emplace(interface->name, interface);
+	mGuiMappings[state].emplace(name, interface);
 }
 
 void GUIManager::update(float dt)
@@ -100,8 +100,10 @@ void GUIManager::handleRelease(EventInfo& info)
 	}
 }
 
-GUIManager::GUIManager(Context Cntext)
+GUIManager::GUIManager(Context Cntext, EventHandler* handler)
 	:sharedContext(Cntext)
 {
 	registerElement<GUILabel>(GUIElementType::Label);
+	handler->registerCallback(State::GameState, "OnClick", &GUIManager::handleClick, this);
+	handler->registerCallback(State::GameState, "OnRelease", &GUIManager::handleRelease, this);
 }

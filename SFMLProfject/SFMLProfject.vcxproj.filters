@@ -84,6 +84,9 @@
     <ClCompile Include="GUIElement.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="GUIManager.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -150,6 +153,9 @@
       <Filter>Source Files\ResourceManagers</Filter>
     </ClInclude>
     <ClInclude Include="GUIElement.h">
+      <Filter>Source Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GUIManager.h">
       <Filter>Source Files\GUI</Filter>
     </ClInclude>
   </ItemGroup>

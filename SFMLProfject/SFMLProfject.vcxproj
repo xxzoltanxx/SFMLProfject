@@ -154,6 +154,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GUIElement.cpp" />
+    <ClCompile Include="GUIManager.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
     <ClCompile Include="SBase.cpp" />
     <ClCompile Include="SpriteSheet.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GUIElement.h" />
+    <ClInclude Include="GUIManager.h" />
     <ClInclude Include="MessageHandler.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="SBase.h" />

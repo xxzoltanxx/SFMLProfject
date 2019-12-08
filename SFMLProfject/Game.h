@@ -6,6 +6,7 @@
 #include "EntityManager.h"
 #include "EventHandler.h"
 #include "StateManager.h"
+#include "GUIManager.h"
 
 class Game
 {
@@ -21,6 +22,7 @@ private:
 	SystemManager* systemManager;
 	EventHandler* eventHandler;
 	StateManager* stateManager;
+	GUIManager* guiManager;
 	sf::RenderWindow* window;
 
 	sf::Clock timer;

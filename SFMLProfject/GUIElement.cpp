@@ -8,6 +8,7 @@ void GUIElement::applyStyle()
 	applyBgStyle();
 	applyGlyphStyle();
 	applyTextStyle();
+	mParent->adjustContentSize();
 }
 
 void GUIElement::applyGlyphStyle()
@@ -81,6 +82,7 @@ void GUIElement::updateStyle(GUIState state, const GUIStyle& style)
 		FontManager::get()->release(currentlyMappedStyle.font);
 		FontManager::get()->request(style.font);
 	}
+	mStyles[mCurrentState] = style;
 	if (state == mCurrentState)
 	{
 		setRedraw(true);
@@ -236,10 +238,24 @@ void GUIInterface::update(float dt)
 
 void GUIInterface::adjustContentSize()
 {
-	auto& contentSize = mStyles[mCurrentState].size;
-	mContent->create(contentSize.x, contentSize.y);
-	mControls->create(contentSize.x, contentSize.y);
-	mBackdrop->create(contentSize.x, contentSize.y);
+	float currentSizeX = mStyles[mCurrentState].size.x;
+	float currentSizeY = mStyles[mCurrentState].size.y;
+
+	for (auto& a : mElements)
+	{
+		sf::Vector2f globalPos = a.second->getPosition();
+		if (globalPos.x + a.second->mStyles[a.second->mCurrentState].size.x > currentSizeX)
+		{
+			currentSizeX = globalPos.x + a.second->mStyles[a.second->mCurrentState].size.x;
+		}
+		if (globalPos.y + a.second->mStyles[a.second->mCurrentState].size.y > currentSizeY)
+		{
+			currentSizeY = globalPos.y + a.second->mStyles[a.second->mCurrentState].size.y;
+		}
+	}
+
+	mContent->create(currentSizeX, currentSizeY);
+	mContentSprite.setTexture(mContent->getTexture());
 }
 
 void GUIInterface::redrawControls()
