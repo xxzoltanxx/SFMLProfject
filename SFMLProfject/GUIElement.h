@@ -1,24 +1,28 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
+enum class GUIElementType
+{
+	Label
+};
 
 struct GUIStyle
 {
-	sf::Vector2f size;
+	sf::Vector2f size = sf::Vector2f(0,0);
 
-	sf::Vector2f backgroundPadding;
-	std::string background;
-	sf::Color backgroundColor;
+	sf::Vector2f backgroundPadding = sf::Vector2f(0,0);
+	std::string background = "";
+	sf::Color backgroundColor = sf::Color(0,0,0,0);
 
-	sf::Vector2f glyphPadding;
-	std::string glyph;
-	sf::Color glyphColor;
+	sf::Vector2f glyphPadding = sf::Vector2f(0, 0);
+	std::string glyph = "";
+	sf::Color glyphColor = sf::Color(0, 0, 0, 0);
 
-	sf::Vector2f fontPadding;
-	std::string font;
-	sf::Color textColor;
-	unsigned int fontSize;
-	bool mCenterText;
+	sf::Vector2f fontPadding = sf::Vector2f(0, 0);
+	std::string font = "";
+	sf::Color textColor = sf::Color(0, 0, 0, 0);
+	unsigned int fontSize = 0;
+	bool mCenterText = false;
 };
 
 enum class GUIState
@@ -39,7 +43,10 @@ struct GUIDrawables
 class GUIInterface;
 class GUIElement
 {
+public:
 	friend class GUIInterface;
+	GUIElement(std::string name, GUIInterface* parent);
+	void setActive(bool active) { isActive = active; }
 protected:
 	virtual void draw(sf::RenderTarget& target) = 0;
 	virtual void update(float dt) = 0;
@@ -83,6 +90,19 @@ protected:
 	std::string text;
 
 	GUIInterface* mParent;
+
+	bool isActive;
+};
+
+class GUILabel : public GUIElement
+{
+	GUILabel(std::string elementName, GUIInterface* parent);
+	void draw(sf::RenderTarget& target) override;
+	void update(float dt) override;
+	void onHover(const sf::Vector2i& pos) override;
+	void onClick(const sf::Vector2i& pos) override;
+	void onRelease() override;
+	void onLeave() override;
 };
 
 enum class GUIEventType
@@ -109,9 +129,17 @@ struct GUIEvent
 	};
 };
 
+class GUIManager;
+
 class GUIInterface : public GUIElement
 {
+	friend class GUIManager;
+public:
+	void adjustContentSize();
+	void addButton(std::string label, std::string elementName);
 private:
+	GUIInterface(GUIManager*, std::string);
+	~GUIInterface();
 	void redrawContent();
 	void redrawControls();
 	void redrawBackdrop();
@@ -137,4 +165,6 @@ private:
 
 	float mHorizontalScroll;
 	float mVerticalScroll;
+	
+	GUIManager* manager;
 };

@@ -1,6 +1,7 @@
 #include "GUIElement.h"
 #include "TextureManager.h"
 #include "FontManager.h"
+#include "GUIManager.h"
 
 void GUIElement::applyStyle()
 {
@@ -114,7 +115,22 @@ bool GUIElement::isWithin(const sf::Vector2i& position)
 }
 
 
+GUIElement::GUIElement(std::string name, GUIInterface* parent)
+{
+	this->name = name;
+	mPosition = sf::Vector2f(0, 0);
+	mIsControl = false;
+	mNeedsRedraw = true;
 
+	mCurrentState = GUIState::Normal;
+	mStyles.emplace(GUIState::Normal, GUIStyle());
+	mStyles.emplace(GUIState::Hover, GUIStyle());
+	mStyles.emplace(GUIState::Click, GUIStyle());
+
+	text = "";
+	mParent = parent;
+	isActive = true;
+}
 
 
 
@@ -139,7 +155,7 @@ void GUIInterface::onLeave()
 
 void GUIInterface::onRelease()
 {
-	sf::RenderWindow* window; //Get window from manager context
+	sf::RenderWindow* window = &manager->getContext().window; //Get window from manager context
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
 	GUIEvent event;
 	event.coords.x = mousePosition.x;
@@ -153,7 +169,7 @@ void GUIInterface::onRelease()
 			element.second->onRelease();
 			event.element = element.second->name.c_str();
 			element.second->mIsControl ? mNeedsControlRedraw = true : mNeedsContentRedraw = true;
-			//ADD event to queue in GUIMANAGER
+			manager->addEvent(event);
 		}
 	}
 	setState(GUIState::Normal);
@@ -174,7 +190,7 @@ void GUIInterface::onClick(const sf::Vector2i& position)
 			element.second->onClick(position);
 			event.element = element.second->name.c_str();
 			element.second->mIsControl ? mNeedsControlRedraw = true : mNeedsContentRedraw = true;
-			//ADD event to queue in GUIMANAGER
+			manager->addEvent(event);
 		}
 	}
 	setState(GUIState::Click);
@@ -190,7 +206,7 @@ void GUIInterface::draw(sf::RenderTarget& target)
 
 void GUIInterface::update(float dt)
 {
-	sf::RenderWindow* window; //Get window from manager context
+	sf::RenderWindow* window = &manager->getContext().window; //Get window from manager context
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
 	GUIEvent event;
 	event.interface = name.c_str();
@@ -204,7 +220,7 @@ void GUIInterface::update(float dt)
 			element.second->onHover(mousePosition);
 			event.element = element.second->name.c_str();
 			element.second->mIsControl ? mNeedsControlRedraw = true : mNeedsContentRedraw = true;
-			//ADD event to queue in GUIMANAGER
+			manager->addEvent(event);
 		}
 		else if (!element.second->isWithin(mousePosition) && element.second->mCurrentState != GUIState::Normal)
 		{
@@ -212,10 +228,18 @@ void GUIInterface::update(float dt)
 			element.second->onLeave();
 			event.element = element.second->name.c_str();
 			element.second->mIsControl ? mNeedsControlRedraw = true : mNeedsContentRedraw = true;
-			//ADD event to queue in GUIMANAGER
+			manager->addEvent(event);
 		}
 
 	}
+}
+
+void GUIInterface::adjustContentSize()
+{
+	auto& contentSize = mStyles[mCurrentState].size;
+	mContent->create(contentSize.x, contentSize.y);
+	mControls->create(contentSize.x, contentSize.y);
+	mBackdrop->create(contentSize.x, contentSize.y);
 }
 
 void GUIInterface::redrawControls()
@@ -268,4 +292,94 @@ void GUIInterface::redrawContent()
 	}
 	mContent->display();
 	mNeedsContentRedraw = false;
+}
+
+GUIInterface::GUIInterface(GUIManager* mgr, std::string name)
+	:GUIElement(name, this)
+{
+	mNeedsContentRedraw = true;
+	mNeedsControlRedraw = true;
+	mNeedsBackdropRedraw = true;
+
+	mBackdrop = new sf::RenderTexture();
+	mContent = new sf::RenderTexture();
+	mControls = new sf::RenderTexture();
+
+	mHorizontalScroll = 0;
+	mVerticalScroll = 0;
+
+	manager = mgr;
+}
+
+GUIInterface::~GUIInterface()
+{
+	delete mBackdrop;
+	delete mContent;
+	delete mControls;
+}
+
+
+void GUIInterface::addButton(std::string label, std::string elementName)
+{
+	GUIElement* button = manager->constructElement(GUIElementType::Label, elementName, this);
+	button->setText(label);
+	mElements[elementName] = button;
+}
+
+
+/////////////////////////////////////////////LABEL
+
+
+
+
+
+
+
+
+
+
+void GUILabel::draw(sf::RenderTarget& target)
+{
+	target.draw(mDrawables.backgroundRect);
+	target.draw(mDrawables.text);
+}
+
+void GUILabel::update(float dt)
+{
+
+}
+
+void GUILabel::onHover(const sf::Vector2i& pos)
+{
+	setState(GUIState::Hover);
+}
+
+void GUILabel::onClick(const sf::Vector2i& pos)
+{
+	setState(GUIState::Click);
+}
+
+void GUILabel::onRelease()
+{
+	setState(GUIState::Normal);
+}
+
+void GUILabel::onLeave()
+{
+	setState(GUIState::Normal);
+}
+
+GUILabel::GUILabel(std::string elementName, GUIInterface* parent)
+	:GUIElement(elementName, parent)
+{
+	GUIStyle buttonStyle;
+	buttonStyle.backgroundColor = sf::Color(255, 0, 0, 255);
+	buttonStyle.font = "Default";
+	buttonStyle.fontSize = 12;
+	buttonStyle.mCenterText = true;
+	buttonStyle.size = sf::Vector2f(100, 50);
+	buttonStyle.textColor = sf::Color(255, 255, 255, 255);
+	updateStyle(GUIState::Click, buttonStyle);
+	updateStyle(GUIState::Hover, buttonStyle);
+	updateStyle(GUIState::Normal, buttonStyle);
 }
