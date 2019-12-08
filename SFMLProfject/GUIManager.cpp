@@ -81,7 +81,6 @@ void GUIManager::handleClick(EventInfo& info)
 		if (a.second->isWithin(info.mousePosition) && a.second->isActive)
 		{
 			a.second->onClick(info.mousePosition);
-			a.second->setState(GUIState::Click);
 		}
 	}
 }
@@ -93,7 +92,6 @@ void GUIManager::handleRelease(EventInfo& info)
 		if (a.second->isWithin(info.mousePosition) && a.second->isActive && a.second->mCurrentState == GUIState::Click)
 		{
 			a.second->onRelease();
-			a.second->setState(GUIState::Normal);
 		}
 	}
 }

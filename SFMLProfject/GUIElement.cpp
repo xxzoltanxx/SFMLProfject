@@ -165,7 +165,7 @@ void GUIInterface::onRelease()
 	event.interfaceC = name.c_str();
 	for (auto& element : mElements)
 	{
-		if (!element.second->isWithin(mousePosition) && element.second->mCurrentState == GUIState::Click)
+		if (element.second->isWithin(mousePosition) && element.second->mCurrentState == GUIState::Click)
 		{
 			event.type = GUIEventType::Release;
 			element.second->onRelease();
@@ -174,7 +174,7 @@ void GUIInterface::onRelease()
 			manager->addEvent(event);
 		}
 	}
-	setState(GUIState::Normal);
+	setState(GUIState::Hover);
 	mNeedsBackdropRedraw = true;
 }
 
@@ -216,7 +216,7 @@ void GUIInterface::update(float dt)
 	event.coords.y = mousePosition.y;
 	for (auto& element : mElements)
 	{
-		if (element.second->isWithin(mousePosition) && element.second->mCurrentState != GUIState::Hover)
+		if (element.second->isWithin(mousePosition) && element.second->mCurrentState == GUIState::Normal)
 		{
 			event.type = GUIEventType::Enter;
 			element.second->onHover(mousePosition);
@@ -379,7 +379,7 @@ void GUILabel::onClick(const sf::Vector2i& pos)
 
 void GUILabel::onRelease()
 {
-	setState(GUIState::Normal);
+	setState(GUIState::Hover);
 }
 
 void GUILabel::onLeave()
@@ -398,6 +398,7 @@ GUILabel::GUILabel(std::string elementName, GUIInterface* parent)
 	buttonStyle.size = sf::Vector2f(100, 50);
 	buttonStyle.textColor = sf::Color(255, 255, 255, 255);
 	updateStyle(GUIState::Click, buttonStyle);
+	buttonStyle.backgroundColor = sf::Color(255, 0, 255, 255);
 	updateStyle(GUIState::Hover, buttonStyle);
 	buttonStyle.backgroundColor = sf::Color(255, 255, 0, 255);
 	updateStyle(GUIState::Normal, buttonStyle);

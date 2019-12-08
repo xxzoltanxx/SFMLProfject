@@ -32,6 +32,7 @@ EventHandler::EventHandler(const std::string& keysConfig)
 		ss >> bindingName;
 		std::string separated;
 		mBindings[bindingName] = new Binding();
+		mBindings[bindingName]->name = bindingName;
 		while (ss >> separated)
 		{
 			auto delimiter = separated.find(':');
@@ -118,7 +119,10 @@ void EventHandler::handleEvent(sf::Event& event)
 						a.second->info.mousePosition = sf::Vector2i(event.mouseButton.x, event.mouseButton.y);
 					}
 				}
-				++a.second->count;
+				else
+				{
+					++a.second->count;
+				}
 			}
 		}
 	}
