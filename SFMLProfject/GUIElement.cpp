@@ -162,7 +162,7 @@ void GUIInterface::onRelease()
 	GUIEvent event;
 	event.coords.x = mousePosition.x;
 	event.coords.y = mousePosition.y;
-	event.interface = name.c_str();
+	event.interfaceC = name.c_str();
 	for (auto& element : mElements)
 	{
 		if (!element.second->isWithin(mousePosition) && element.second->mCurrentState == GUIState::Click)
@@ -181,7 +181,7 @@ void GUIInterface::onRelease()
 void GUIInterface::onClick(const sf::Vector2i& position)
 {
 	GUIEvent event;
-	event.interface = name.c_str();
+	event.interfaceC = name.c_str();
 	event.coords.x = position.x;
 	event.coords.y = position.y;
 	for (auto& element : mElements)
@@ -211,7 +211,7 @@ void GUIInterface::update(float dt)
 	sf::RenderWindow* window = &manager->getContext().window; //Get window from manager context
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
 	GUIEvent event;
-	event.interface = name.c_str();
+	event.interfaceC = name.c_str();
 	event.coords.x = mousePosition.x;
 	event.coords.y = mousePosition.y;
 	for (auto& element : mElements)

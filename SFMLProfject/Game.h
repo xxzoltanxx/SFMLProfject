@@ -16,7 +16,7 @@ public:
 private:
 	void update(float dt);
 	void draw();
-	void handleEvents(sf::Event& event);
+	void handleEvents();
 
 	EntityManager* entityManager;
 	SystemManager* systemManager;

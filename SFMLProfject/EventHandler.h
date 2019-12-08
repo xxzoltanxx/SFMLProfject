@@ -1,5 +1,6 @@
 #pragma once
 #include "StateManager.h"
+#include "GUIElement.h"
 enum class RegisteredEvent
 {
 	KeyPress = sf::Event::KeyPressed,
@@ -7,7 +8,11 @@ enum class RegisteredEvent
 	MousePressed = sf::Event::MouseButtonPressed,
 	MouseReleased = sf::Event::MouseButtonReleased,
 	Keyboard = sf::Event::Count + 1,
-	Mouse
+	Mouse,
+	GUIEnter,
+	GUIExit,
+	GUIClick,
+	GUIRelease
 };
 
 class EventData
@@ -16,6 +21,7 @@ public:
 	union
 	{
 		int keyCode = 0;
+		GUIEvent guiEvent;
 	};
 };
 
@@ -43,8 +49,10 @@ class EventHandler
 {
 public:
 	EventHandler(const std::string& keysConfig);
+	~EventHandler();
 	void update();
 	void handleEvent(sf::Event& event);
+	void handleEvent(GUIEvent& event);
 	template <typename T> void registerCallback(State state, std::string bind,void (T::* func)(EventInfo& info), T* instance)
 	{
 		if (mCallbacks.find(state) == mCallbacks.end())

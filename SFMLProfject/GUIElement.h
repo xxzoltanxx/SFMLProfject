@@ -122,7 +122,7 @@ struct ClickCoordinates
 struct GUIEvent
 {
 	GUIEventType type;
-	const char* interface;
+	const char* interfaceC;
 	const char* element;
 	union
 	{

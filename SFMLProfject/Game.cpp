@@ -22,9 +22,18 @@ Game::Game()
 	stateManager->addState(State::GameState);
 }
 
-void Game::handleEvents(sf::Event& event)
+void Game::handleEvents()
 {
-	eventHandler->handleEvent(event);
+	sf::Event event;
+	while (window->pollEvent(event))
+	{
+		eventHandler->handleEvent(event);
+	}
+	GUIEvent guiEvent;
+	while (guiManager->pollEvent(guiEvent))
+	{
+		eventHandler->handleEvent(guiEvent);
+	}
 	eventHandler->update();
 }
 
@@ -44,11 +53,7 @@ void Game::run()
 {
 	while (window->isOpen())
 	{
-		sf::Event event;
-		while (window->pollEvent(event))
-		{
-			eventHandler->handleEvent(event);
-		}
+		handleEvents();
 		elapsedTime += timer.restart();
 
 		while (elapsedTime > frameTime)
