@@ -46,7 +46,7 @@ EventHandler::EventHandler(const std::string& keysConfig)
 				char* copyInterface = new char[secondValue.length() + 1];
 				strcpy_s(copyElement, secondValue.length(), secondValue.c_str());
 				strcpy_s(copyInterface, thirdValue.length(), thirdValue.c_str());
-				data.guiEvent.type = GUIEventType((firstVal - int(RegisteredEvent::GUIRelease)));
+				data.guiEvent.type = GUIEventType((firstVal - int(RegisteredEvent::GUIEnter)));
 				data.guiEvent.element = copyElement;
 				data.guiEvent.interfaceC = copyInterface;
 				mBindings[bindingName]->mEvents.push_back(std::make_pair(RegisteredEvent(firstVal), data));
@@ -131,7 +131,7 @@ void EventHandler::handleEvent(GUIEvent& event)
 		auto& events = a.second->mEvents;
 		for (auto& eventBinding : events)
 		{
-			if ((int)eventBinding.first == (int)event.type + (int)RegisteredEvent::GUIRelease)
+			if ((int)eventBinding.first == (int)event.type + (int)RegisteredEvent::GUIEnter)
 			{
 				if (strcmp(event.interfaceC, eventBinding.second.guiEvent.interfaceC) == 0 && strcmp(event.element, eventBinding.second.guiEvent.element) == 0)
 				{
