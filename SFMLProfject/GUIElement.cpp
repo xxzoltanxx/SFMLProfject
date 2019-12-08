@@ -82,7 +82,7 @@ void GUIElement::updateStyle(GUIState state, const GUIStyle& style)
 		FontManager::get()->release(currentlyMappedStyle.font);
 		FontManager::get()->request(style.font);
 	}
-	mStyles[mCurrentState] = style;
+	mStyles[state] = style;
 	if (state == mCurrentState)
 	{
 		setRedraw(true);
@@ -254,6 +254,8 @@ void GUIInterface::adjustContentSize()
 		}
 	}
 
+	mStyles[mCurrentState].size.x = currentSizeX;
+	mStyles[mCurrentState].size.y = currentSizeY;
 	mContent->create(currentSizeX, currentSizeY);
 	mContentSprite.setTexture(mContent->getTexture());
 }
@@ -397,5 +399,6 @@ GUILabel::GUILabel(std::string elementName, GUIInterface* parent)
 	buttonStyle.textColor = sf::Color(255, 255, 255, 255);
 	updateStyle(GUIState::Click, buttonStyle);
 	updateStyle(GUIState::Hover, buttonStyle);
+	buttonStyle.backgroundColor = sf::Color(255, 255, 0, 255);
 	updateStyle(GUIState::Normal, buttonStyle);
 }

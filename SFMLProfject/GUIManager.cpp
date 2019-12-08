@@ -55,21 +55,19 @@ void GUIManager::update(float dt)
 	sf::Vector2i currentPosition = sf::Mouse::getPosition(sharedContext.window);
 	for (auto& a : mGuiMappings[mCurrentState])
 	{
+		a.second->update(dt);
 		if (a.second->isWithin(currentPosition) && a.second->isActive)
 		{
-			a.second->update(dt);
 			if (a.second->mCurrentState == GUIState::Normal)
 			{
 				a.second->onHover(currentPosition);
-				a.second->setState(GUIState::Hover);
 			}
 		}
-		if (!a.second->isWithin(currentPosition) && a.second->isActive)
+		else if (!a.second->isWithin(currentPosition) && a.second->isActive)
 		{
 			if (a.second->mCurrentState == GUIState::Hover)
 			{
 				a.second->onLeave();
-				a.second->setState(GUIState::Normal);
 			}
 		}
 
