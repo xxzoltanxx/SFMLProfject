@@ -61,7 +61,7 @@ protected:
 
 	friend std::stringstream& operator>>(std::stringstream& is, GUIElement* element)
 	{
-		element.readIn(is);
+		element->readIn(is);
 		return is;
 	}
 	void setPosition(const sf::Vector2f& newPos);

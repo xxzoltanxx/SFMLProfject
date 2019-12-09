@@ -89,6 +89,7 @@ GUIInterface* GUIManager::addInterfaceFromFile(State state, std::string file)
 		std::stringstream ss(name);
 		interfaceC->addElement(ss);
 	}
+	return interfaceC;
 }
 
 void GUIManager::handleClick(EventInfo& info)
