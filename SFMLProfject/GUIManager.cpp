@@ -1,7 +1,9 @@
-#include "GUIManager.h"
-#include "EventHandler.h"
 #include <fstream>
 #include <sstream>
+
+#include "GUIManager.h"
+#include "EventHandler.h"
+#include "Utilities.h"
 
 void GUIManager::draw(sf::RenderTarget& target)
 {
@@ -47,9 +49,9 @@ void GUIManager::setCurrentState(State state)
 	mCurrentState = state;
 }
 
-void GUIManager::addInterface(State state, GUIInterface* interface, std::string name)
+void GUIManager::addInterface(State state, GUIInterface* interfaceC, std::string name)
 {
-	mGuiMappings[state].emplace(name, interface);
+	mGuiMappings[state].emplace(name, interfaceC);
 }
 
 void GUIManager::update(float dt)
@@ -78,14 +80,14 @@ void GUIManager::update(float dt)
 
 GUIInterface* GUIManager::addInterfaceFromFile(State state, std::string file)
 {
-	std::ifstream fileStream(file);
+	std::ifstream fileStream(Utils::GetWorkingDirectory() + file);
 	std::string name;
 	fileStream >> name;
-	GUIInterface* interface = new GUIInterface(this, name);
+	GUIInterface* interfaceC = new GUIInterface(this, name);
 	while (std::getline(fileStream, name))
 	{
 		std::stringstream ss(name);
-		interface->addElement(ss);
+		interfaceC->addElement(ss);
 	}
 }
 
