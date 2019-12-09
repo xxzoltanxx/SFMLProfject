@@ -105,18 +105,6 @@ void GUIElement::applyStyle()
 	mParent->adjustContentSize();
 }
 
-void GUIElement::readIn(std::stringstream& is)
-{
-	is >> mPosition.x >> mPosition.y;
-	std::string normalStyle;
-	std::string hoverStyle;
-	std::string clickStyle;
-	is >> normalStyle >> hoverStyle >> clickStyle;
-	updateStyle(GUIState::Normal, GUIStyle(normalStyle));
-	updateStyle(GUIState::Hover, GUIStyle(hoverStyle));
-	updateStyle(GUIState::Click, GUIStyle(clickStyle));
-}
-
 void GUIElement::applyGlyphStyle()
 {
 	sf::Sprite& glyph = mDrawables.glyph;
@@ -509,4 +497,16 @@ GUILabel::GUILabel(std::string elementName, GUIInterface* parent)
 	:GUIElement(elementName, parent)
 {
 
+}
+
+void GUILabel::readIn(std::stringstream& is)
+{
+	is >> mPosition.x >> mPosition.y;
+	std::string normalStyle;
+	std::string hoverStyle;
+	std::string clickStyle;
+	is >> normalStyle >> hoverStyle >> clickStyle;
+	updateStyle(GUIState::Normal, GUIStyle(normalStyle));
+	updateStyle(GUIState::Hover, GUIStyle(hoverStyle));
+	updateStyle(GUIState::Click, GUIStyle(clickStyle));
 }
