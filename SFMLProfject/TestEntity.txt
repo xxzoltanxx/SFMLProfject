@@ -1,4 +1,4 @@
 POSITION
-0.5 0.5
+100 100
 SPRITE
 test

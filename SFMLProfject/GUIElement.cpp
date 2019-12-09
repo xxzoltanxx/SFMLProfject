@@ -49,7 +49,8 @@ void GUIElement::applyTextStyle()
 		text.setString(this->text);
 		if (currentStyle.mCenterText)
 		{
-			text.setOrigin(text.getLocalBounds().width / 2.0f, text.getLocalBounds().height / 2.0f);
+			auto bounds = text.getLocalBounds();
+			text.setOrigin(bounds.left + bounds.width / 2.0f, bounds.top + bounds.height / 2.0f);
 			text.setPosition(currentStyle.size / 2.0f);
 		}
 		else
@@ -393,10 +394,10 @@ GUILabel::GUILabel(std::string elementName, GUIInterface* parent)
 	GUIStyle buttonStyle;
 	buttonStyle.backgroundColor = sf::Color(255, 0, 0, 255);
 	buttonStyle.font = "Default";
-	buttonStyle.fontSize = 12;
+	buttonStyle.fontSize = 25;
 	buttonStyle.mCenterText = true;
 	buttonStyle.size = sf::Vector2f(100, 50);
-	buttonStyle.textColor = sf::Color(255, 255, 255, 255);
+	buttonStyle.textColor = sf::Color(0, 0, 0, 255);
 	updateStyle(GUIState::Click, buttonStyle);
 	buttonStyle.backgroundColor = sf::Color(255, 0, 255, 255);
 	updateStyle(GUIState::Hover, buttonStyle);
