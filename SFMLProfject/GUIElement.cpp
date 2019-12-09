@@ -1,7 +1,101 @@
+#include <sstream>
 #include "GUIElement.h"
 #include "TextureManager.h"
 #include "FontManager.h"
 #include "GUIManager.h"
+#include "Utilities.h"
+
+//STYLE
+
+
+
+GUIStyle::GUIStyle(const std::string& styleFile)
+{
+	std::ifstream ifs(Utils::GetWorkingDirectory() + styleFile);
+	std::string line;
+	while (std::getline(ifs, line))
+	{
+		if (line == "SIZE")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> size.x >> size.y;
+		}
+		else if (line == "BACKGROUND_PADDING")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> backgroundPadding.x >> backgroundPadding.y;
+		}
+		else if (line == "BACKGROUND")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> background;
+		}
+		else if (line == "BACKGROUND_COLOR")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> backgroundColor.r >> backgroundColor.g >> backgroundColor.b >> backgroundColor.a;
+		}
+		else if (line == "GLYPH_PADDING")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> glyphPadding.x >> glyphPadding.y;
+		}
+		else if (line == "GLYPH")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> glyph;
+		}
+		else if (line == "GLYPH_COLOR")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> glyphColor.r >> glyphColor.g >> glyphColor.b >> glyphColor.a;
+		}
+		else if (line == "FONT_PADDING")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> fontPadding.x >> fontPadding.y;
+		}
+		else if (line == "FONT")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> font;
+		}
+		else if (line == "TEXT_COLOR")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> textColor.r >> textColor.g >> textColor.b >> textColor.a;
+		}
+		else if (line == "FONTSIZE")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> fontSize;
+		}
+		else if (line == "CENTER_TEXT")
+		{
+			std::getline(ifs, line);
+			std::stringstream ss(line);
+			ss >> mCenterText;
+		}
+	}
+}
+
+
+
+//ELEMENT
+
+
+
 
 void GUIElement::applyStyle()
 {
@@ -9,6 +103,18 @@ void GUIElement::applyStyle()
 	applyGlyphStyle();
 	applyTextStyle();
 	mParent->adjustContentSize();
+}
+
+void GUIElement::readIn(std::stringstream& is)
+{
+	is >> mPosition.x >> mPosition.y;
+	std::string normalStyle;
+	std::string hoverStyle;
+	std::string clickStyle;
+	is >> normalStyle >> hoverStyle >> clickStyle;
+	updateStyle(GUIState::Normal, GUIStyle(normalStyle));
+	updateStyle(GUIState::Hover, GUIStyle(hoverStyle));
+	updateStyle(GUIState::Click, GUIStyle(clickStyle));
 }
 
 void GUIElement::applyGlyphStyle()
@@ -143,6 +249,10 @@ GUIElement::GUIElement(std::string name, GUIInterface* parent)
 
 
 
+void GUIInterface::readIn(std::stringstream& is)
+{
+
+}
 
 void GUIInterface::onHover(const sf::Vector2i& position)
 {
@@ -338,11 +448,18 @@ GUIInterface::~GUIInterface()
 }
 
 
-void GUIInterface::addButton(std::string label, std::string elementName)
+void GUIInterface::addElement(std::stringstream& is)
 {
-	GUIElement* button = manager->constructElement(GUIElementType::Label, elementName, this);
-	button->setText(label);
-	mElements[elementName] = button;
+	std::string type;
+	is >> type;
+	if (type == "LABEL")
+	{
+		std::string elementName;
+		is >> elementName;
+		GUILabel* newLabel = new GUILabel(elementName, this);
+		is >> newLabel;
+		mElements[elementName] = newLabel;
+	}
 }
 
 
@@ -391,16 +508,5 @@ void GUILabel::onLeave()
 GUILabel::GUILabel(std::string elementName, GUIInterface* parent)
 	:GUIElement(elementName, parent)
 {
-	GUIStyle buttonStyle;
-	buttonStyle.backgroundColor = sf::Color(255, 0, 0, 255);
-	buttonStyle.font = "Default";
-	buttonStyle.fontSize = 25;
-	buttonStyle.mCenterText = true;
-	buttonStyle.size = sf::Vector2f(100, 50);
-	buttonStyle.textColor = sf::Color(0, 0, 0, 255);
-	updateStyle(GUIState::Click, buttonStyle);
-	buttonStyle.backgroundColor = sf::Color(255, 0, 255, 255);
-	updateStyle(GUIState::Hover, buttonStyle);
-	buttonStyle.backgroundColor = sf::Color(255, 255, 0, 255);
-	updateStyle(GUIState::Normal, buttonStyle);
+
 }

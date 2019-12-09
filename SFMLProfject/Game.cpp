@@ -13,12 +13,10 @@ Game::Game()
 	context.guiManager = guiManager;
 	stateManager = new StateManager(context);
 
-	GUIInterface* newInterface = new GUIInterface(guiManager, "TEST");
-	newInterface->addButton("TEST", "TEST");
-	guiManager->addInterface(State::GameState, newInterface, "TEST");
 	//create textureManager instance so the config loads
 	TextureManager::get();
 	FontManager::get();
+
 	stateManager->addState(State::GameState);
 }
 

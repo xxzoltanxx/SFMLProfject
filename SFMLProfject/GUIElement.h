@@ -8,6 +8,8 @@ enum class GUIElementType
 
 struct GUIStyle
 {
+	GUIStyle() = default;
+	GUIStyle(const std::string& styleFile);
 	sf::Vector2f size = sf::Vector2f(0,0);
 
 	sf::Vector2f backgroundPadding = sf::Vector2f(0,0);
@@ -55,6 +57,13 @@ protected:
 	virtual void onRelease() = 0;
 	virtual void onLeave() = 0;
 
+	virtual void readIn(std::stringstream& is) = 0;
+
+	friend std::stringstream& operator>>(std::stringstream& is, GUIElement* element)
+	{
+		element.readIn(is);
+		return is;
+	}
 	void setPosition(const sf::Vector2f& newPos);
 	sf::Vector2f getPosition() const
 	{
@@ -104,6 +113,7 @@ public:
 	void onClick(const sf::Vector2i& pos) override;
 	void onRelease() override;
 	void onLeave() override;
+	void readIn(std::stringstream& is) override;
 };
 
 enum class GUIEventType
@@ -137,10 +147,11 @@ class GUIInterface : public GUIElement
 	friend class GUIManager;
 public:
 	void adjustContentSize();
-	void addButton(std::string label, std::string elementName);
 	GUIInterface(GUIManager*, std::string);
 	~GUIInterface();
 private:
+
+	void addElement(std::stringstream& is);
 	void redrawContent();
 	void redrawControls();
 	void redrawBackdrop();
@@ -151,6 +162,7 @@ private:
 	void onClick(const sf::Vector2i& position) override;
 	void onRelease() override;
 	void onLeave() override;
+	void readIn(std::stringstream& is) override;
 
 	std::unordered_map<std::string, GUIElement*> mElements;
 	bool mNeedsContentRedraw;

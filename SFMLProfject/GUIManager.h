@@ -30,7 +30,7 @@ public:
 		return mElementFactory[type](elementName, interface);
 	}
 
-	
+	GUIInterface* addInterfaceFromFile(State state, std::string file);
 
 private:
 	template <typename T> void registerElement(GUIElementType type)

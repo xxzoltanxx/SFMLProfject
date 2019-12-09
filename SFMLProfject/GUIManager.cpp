@@ -1,5 +1,7 @@
 #include "GUIManager.h"
 #include "EventHandler.h"
+#include <fstream>
+#include <sstream>
 
 void GUIManager::draw(sf::RenderTarget& target)
 {
@@ -71,6 +73,19 @@ void GUIManager::update(float dt)
 			}
 		}
 
+	}
+}
+
+GUIInterface* GUIManager::addInterfaceFromFile(State state, std::string file)
+{
+	std::ifstream fileStream(file);
+	std::string name;
+	fileStream >> name;
+	GUIInterface* interface = new GUIInterface(this, name);
+	while (std::getline(fileStream, name))
+	{
+		std::stringstream ss(name);
+		interface->addElement(ss);
 	}
 }
 
