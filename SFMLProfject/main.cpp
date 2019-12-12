@@ -76,11 +76,22 @@ bool SoundManager::playSound(const unsigned int& soundID)
 	return false;
 }
 
-bool SoundManager::playSound(const unsigned int& soundID)
+bool SoundManager::stopSound(const unsigned int& soundID)
 {
 	if (mSounds[mCurrentState].find(soundID) != mSounds[mCurrentState].end())
 	{
 		mSounds[mCurrentState][soundID].first->stop();
+		mSounds[mCurrentState][soundID].second.isPaused = true;
+		return true;
+	}
+	return false;
+}
+
+bool SoundManager::pauseSound(const unsigned int& soundID)
+{
+	if (mSounds[mCurrentState].find(soundID) != mSounds[mCurrentState].end())
+	{
+		mSounds[mCurrentState][soundID].first->pause();
 		mSounds[mCurrentState][soundID].second.isPaused = true;
 		return true;
 	}
