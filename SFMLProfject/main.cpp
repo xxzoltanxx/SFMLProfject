@@ -65,6 +65,16 @@ private:
 	unsigned int currentSoundsPlaying;
 };
 
+bool SoundManager::setPosition(const unsigned int& soundID, const sf::Vector3f& newpos)
+{
+	if (mSounds[mCurrentState].find(soundID) != mSounds[mCurrentState].end())
+	{
+		mSounds[mCurrentState][soundID].first->setPosition(newpos);
+		return true;
+	}
+	return false;
+}
+
 bool SoundManager::playSound(const unsigned int& soundID)
 {
 	if (mSounds[mCurrentState].find(soundID) != mSounds[mCurrentState].end())
