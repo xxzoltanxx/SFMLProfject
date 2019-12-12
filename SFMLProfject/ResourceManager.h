@@ -44,6 +44,11 @@ public:
 		}
 	}
 
+	std::string getPath(const std::string& file) const
+	{
+		return paths[file];
+	}
+
 protected:
 	T* load(std::string resource)
 	{
