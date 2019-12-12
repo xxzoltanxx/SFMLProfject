@@ -38,11 +38,11 @@ using RecycledSounds = std::vector<std::pair<std::pair<sf::Sound*, std::string>,
 class SoundManager
 {
 public:
-	void playSound(const std::string& sound, const sf::Vector3f& position, bool loop, bool isRelative);
-	void playSound(const unsigned int& soundID);
-	void stopSound(const unsigned int& soundID);
-	void pauseSound(const unsigned int& soundID);
-	void setPosition(const unsigned int& soundID, const sf::Vector3f& newpos);
+	bool playSound(const std::string& sound, const sf::Vector3f& position, bool loop, bool isRelative);
+	bool playSound(const unsigned int& soundID);
+	bool stopSound(const unsigned int& soundID);
+	bool pauseSound(const unsigned int& soundID);
+	bool setPosition(const unsigned int& soundID, const sf::Vector3f& newpos);
 
 	void switchState(State newState);
 	void recycleSound(const std::string& soundName, const unsigned int& soundID, sf::Sound* sound);
@@ -64,6 +64,46 @@ private:
 	unsigned int lastID;
 	unsigned int currentSoundsPlaying;
 };
+
+bool SoundManager::playSound(const unsigned int& soundID)
+{
+	if (mSounds[mCurrentState].find(soundID) != mSounds[mCurrentState].end())
+	{
+		mSounds[mCurrentState][soundID].first->play();
+		mSounds[mCurrentState][soundID].second.isPaused = false;
+		return true;
+	}
+	return false;
+}
+
+bool SoundManager::playSound(const unsigned int& soundID)
+{
+	if (mSounds[mCurrentState].find(soundID) != mSounds[mCurrentState].end())
+	{
+		mSounds[mCurrentState][soundID].first->stop();
+		mSounds[mCurrentState][soundID].second.isPaused = true;
+		return true;
+	}
+	return false;
+}
+
+bool SoundManager::playSound(const std::string& sound, const sf::Vector3f& position, bool loop, bool isRelative)
+{
+	unsigned int id = createSound(sound);
+	if (id != -1)
+	{
+		SoundProperties& properties = mProperties[sound];
+		sf::Sound* soundB = mSounds[mCurrentState][id].first;
+		soundB->setAttenuation(properties.attenuation);
+		soundB->setPitch(properties.pitch);
+		soundB->setMinDistance(properties.minDistance);
+		soundB->setLoop(loop);
+		soundB->setRelativeToListener(isRelative);
+		soundB->play();
+		return true;
+	}
+	return false;
+}
 
 unsigned int SoundManager::createSound(const std::string& sound)
 {
