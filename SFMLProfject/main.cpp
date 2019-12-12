@@ -42,6 +42,7 @@ public:
 	void playSound(const unsigned int& soundID);
 	void stopSound(const unsigned int& soundID);
 	void pauseSound(const unsigned int& soundID);
+	void setPosition(const unsigned int& soundID, const sf::Vector3f& newpos);
 
 	void switchState(State newState);
 	void recycleSound(const std::string& soundName, const unsigned int& soundID, sf::Sound* sound);
