@@ -90,7 +90,7 @@ bool SoundManager::playSound(const unsigned int& soundID)
 bool SoundManager::playSound(const std::string& sound, const sf::Vector3f& position, bool loop, bool isRelative)
 {
 	unsigned int id = createSound(sound);
-	if (id != -1)
+	if (id)
 	{
 		SoundProperties& properties = mProperties[sound];
 		sf::Sound* soundB = mSounds[mCurrentState][id].first;
@@ -128,10 +128,10 @@ unsigned int SoundManager::createSound(const std::string& sound)
 	{
 		soundPtr = new sf::Sound();
 		soundPtr->setBuffer(*AudioManager::get()->request(mProperties[sound].name));
-		soundID = lastID++;
+		soundID = ++lastID;
 		++currentSoundsPlaying;
 		mSounds[mCurrentState][soundID] = std::make_pair(soundPtr, SoundData(sound));
 		return soundID;
 	}
-	return -1;
+	return 0;
 }
