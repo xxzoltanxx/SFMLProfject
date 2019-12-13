@@ -1,4 +1,5 @@
 #include "SoundManager.h"
+#include "Utilities.h"
 
 void SoundManager::eraseState(State state)
 {
@@ -193,7 +194,7 @@ unsigned int SoundManager::createSound(const std::string& sound)
 	else if (currentSoundsPlaying <= maxSounds)
 	{
 		soundPtr = new sf::Sound();
-		soundPtr->setBuffer(*AudioManager::get()->request(mProperties[sound].name));
+		soundPtr->setBuffer(*AudioManager::get()->request(getProperty(sound).name));
 		soundID = ++lastID;
 		++currentSoundsPlaying;
 		mSounds[mCurrentState][soundID] = std::make_pair(soundPtr, SoundData(sound));
@@ -226,4 +227,17 @@ void SoundManager::clearAll()
 	}
 	mMusic.clear();
 	currentSoundsPlaying = 0;
+}
+
+SoundProperties& SoundManager::getProperty(const std::string& sound)
+{
+	auto found = mProperties.find(sound);
+	if (found == mProperties.end())
+	{
+		SoundProperties properties;
+		std::ifstream ifs(Utils::GetWorkingDirectory() + "Audio/" + sound + ".sound");
+		ifs >> properties;
+		mProperties[sound] = properties;
+	}
+	return mProperties[sound];
 }

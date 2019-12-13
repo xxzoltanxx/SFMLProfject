@@ -5,6 +5,8 @@
 
 struct SoundProperties
 {
+	//TODO
+	friend std::ifstream& operator>>(std::ifstream& ifs, SoundProperties& properties);
 	std::string name;
 	float attenuation;
 	float pitch;
@@ -37,6 +39,7 @@ public:
 	void switchState(State newState);
 	void eraseState(State state);
 	bool recycleSound(const std::string& soundName, const unsigned int& soundID, sf::Sound* sound);
+	SoundProperties& getProperty(const std::string& sound);
 
 	void playMusic(const std::string& music, bool loop);
 	void stopMusic();
