@@ -201,3 +201,28 @@ unsigned int SoundManager::createSound(const std::string& sound)
 	}
 	return 0;
 }
+
+void SoundManager::clearAll()
+{
+	for (auto soundBegin = mSounds.begin(); soundBegin != mSounds.end(); ++soundBegin)
+	{
+		auto soundIter = soundBegin->second.begin();
+		auto soundIterEnd = soundBegin->second.end();
+		while (soundIter != soundIterEnd)
+		{
+			delete soundIter->second.first;
+		}
+	}
+	mSounds.clear();
+	for (auto recycledBegin = mRecycledSounds.begin(); recycledBegin != mRecycledSounds.end(); ++recycledBegin)
+	{
+		delete recycledBegin->first.first;
+	}
+	mRecycledSounds.clear();
+	for (auto musicBegin = mMusic.begin(); musicBegin != mMusic.end(); ++musicBegin)
+	{
+		delete musicBegin->second.first;
+	}
+	mMusic.clear();
+	currentSoundsPlaying = 0;
+}

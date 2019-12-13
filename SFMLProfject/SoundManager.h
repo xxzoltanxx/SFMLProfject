@@ -33,6 +33,7 @@ public:
 	bool pauseSound(const unsigned int& soundID);
 	bool setPosition(const unsigned int& soundID, const sf::Vector3f& newpos);
 
+	void clearAll();
 	void switchState(State newState);
 	void eraseState(State state);
 	bool recycleSound(const std::string& soundName, const unsigned int& soundID, sf::Sound* sound);
