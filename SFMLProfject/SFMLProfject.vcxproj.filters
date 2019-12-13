@@ -34,6 +34,12 @@
     <Filter Include="Source Files\Sound">
       <UniqueIdentifier>{2e82785e-0e62-4add-8824-ad8619ad043c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\XMLReader">
+      <UniqueIdentifier>{7c60b8c0-2d59-472d-9137-f86a4d96e458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{ee0f8410-9c40-4571-a782-a676dbd2a997}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -172,6 +178,18 @@
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>Source Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidxml_print.hpp">
+      <Filter>Source Files\XMLReader</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidxml_utils.hpp">
+      <Filter>Source Files\XMLReader</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidxml.hpp">
+      <Filter>Source Files\XMLReader</Filter>
+    </ClInclude>
+    <ClInclude Include="rapidxml_iterators.hpp">
+      <Filter>Source Files\XMLReader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
