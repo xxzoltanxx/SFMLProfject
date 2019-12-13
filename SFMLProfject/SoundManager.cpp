@@ -211,6 +211,7 @@ void SoundManager::clearAll()
 		while (soundIter != soundIterEnd)
 		{
 			delete soundIter->second.first;
+			++soundIter;
 		}
 	}
 	mSounds.clear();
