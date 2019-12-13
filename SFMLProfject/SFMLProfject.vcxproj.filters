@@ -31,6 +31,9 @@
     <Filter Include="Source Files\GUI">
       <UniqueIdentifier>{c4dd65a7-ee45-4101-88a1-d63f6d76940e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Sound">
+      <UniqueIdentifier>{2e82785e-0e62-4add-8824-ad8619ad043c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="AudioManager.cpp">
       <Filter>Source Files\ResourceManagers</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Source Files\Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="AudioManager.h">
       <Filter>Source Files\ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Source Files\Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
