@@ -1,4 +1,4 @@
 POSITION
 100 100
-SPRITE
-test
+SPRITESHEET
+testSheet.sheet

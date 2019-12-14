@@ -14,7 +14,7 @@ std::vector<MapBuilderTiled::TileMapData> MapBuilderTiled::constructTileMapData(
 		int firstGid = tileSetNode.attribute("firstgid").as_int();
 
 		xml_document tilesetDocument;
-		tilesetDocument.load_file((Utils::GetWorkingDirectory() + source).c_str());
+		tilesetDocument.load_file((Utils::GetWorkingDirectory() + "maps/" + source).c_str());
 
 		auto tilesetInfoNode = tilesetDocument.first_child();
 		int columns = tilesetInfoNode.attribute("columns").as_int();
@@ -46,7 +46,7 @@ TileData* MapBuilderTiled::constructTileData(int tileId, const TileMapData& data
 void MapBuilderTiled::load(const std::string& file, Layers& mTiles, TileDataContainer& container)
 {
 	xml_document doc;
-	doc.load_file((Utils::GetWorkingDirectory() + file).c_str());
+	doc.load_file((Utils::GetWorkingDirectory() + "maps/"+ file).c_str());
 	auto tileSetNode = doc.child("map").first_child();
 	xml_node& layerNode = tileSetNode;
 	std::vector<TileMapData> tileMapData = constructTileMapData(tileSetNode, layerNode);
