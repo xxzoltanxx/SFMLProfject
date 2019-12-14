@@ -156,7 +156,10 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GUIElement.cpp" />
     <ClCompile Include="GUIManager.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MapBuilder.cpp" />
     <ClCompile Include="MessageHandler.cpp" />
+    <ClCompile Include="pugixml.cpp" />
     <ClCompile Include="SBase.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteSheet.cpp" />
@@ -181,12 +184,12 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GUIElement.h" />
     <ClInclude Include="GUIManager.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MapBuilder.h" />
     <ClInclude Include="MessageHandler.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="rapidxml.hpp" />
-    <ClInclude Include="rapidxml_iterators.hpp" />
-    <ClInclude Include="rapidxml_print.hpp" />
-    <ClInclude Include="rapidxml_utils.hpp" />
+    <ClInclude Include="pugiconfig.hpp" />
+    <ClInclude Include="pugixml.hpp" />
     <ClInclude Include="SBase.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteSheet.h" />

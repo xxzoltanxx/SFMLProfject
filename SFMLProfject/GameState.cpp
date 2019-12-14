@@ -11,6 +11,7 @@ GameState::GameState(StateManager* mgr)
 
 void GameState::draw(sf::RenderTarget& target)
 {
+	mGameMap.draw(target);
 	stateManager->sharedContext.systemManager->draw(target);
 }
 
@@ -22,6 +23,7 @@ void GameState::update(float dt)
 void GameState::onCreate()
 {
 	stateManager->sharedContext.entityManager->addEntityFromFile("TestEntity.txt");
+	mGameMap.loadMap("testMap.xml");
 }
 
 void GameState::onDestroy()

@@ -1,5 +1,6 @@
 #pragma once
 #include "State.h"
+#include "Map.h"
 class GameState : public BaseState
 {
 public:
@@ -10,4 +11,7 @@ public:
 
 	void onCreate() override;
 	void onDestroy() override;
+
+private:
+	Map mGameMap;
 };

@@ -102,6 +102,15 @@
     <ClCompile Include="SoundManager.cpp">
       <Filter>Source Files\Sound</Filter>
     </ClCompile>
+    <ClCompile Include="pugixml.cpp">
+      <Filter>Source Files\XMLReader</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilder.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h">
@@ -179,17 +188,17 @@
     <ClInclude Include="SoundManager.h">
       <Filter>Source Files\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="rapidxml_print.hpp">
+    <ClInclude Include="pugiconfig.hpp">
       <Filter>Source Files\XMLReader</Filter>
     </ClInclude>
-    <ClInclude Include="rapidxml_utils.hpp">
+    <ClInclude Include="pugixml.hpp">
       <Filter>Source Files\XMLReader</Filter>
     </ClInclude>
-    <ClInclude Include="rapidxml.hpp">
-      <Filter>Source Files\XMLReader</Filter>
+    <ClInclude Include="MapBuilder.h">
+      <Filter>Source Files\Map</Filter>
     </ClInclude>
-    <ClInclude Include="rapidxml_iterators.hpp">
-      <Filter>Source Files\XMLReader</Filter>
+    <ClInclude Include="Map.h">
+      <Filter>Source Files\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
