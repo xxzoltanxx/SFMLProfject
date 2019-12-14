@@ -49,6 +49,7 @@ void Map::loadMap(const std::string& file)
 
 void Map::draw(sf::RenderTarget& target)
 {
+	//TODO DRAW ONLY IF ITS INSIDE THE RENDER WINDOW
 	for (auto layer = mLayers.begin(); layer != mLayers.end(); ++layer)
 	{
 		for (auto& tile : (*layer)->mTiles)
