@@ -104,7 +104,7 @@ void SoundManager::switchState(State newState)
 	{
 		playSound(iter->first);
 	}
-	auto music = mMusic.find(mCurrentState);
+	music = mMusic.find(mCurrentState);
 	if (music != mMusic.end())
 	{
 		music->second.first->play();

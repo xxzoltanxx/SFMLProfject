@@ -44,7 +44,7 @@ public:
 		}
 	}
 
-	std::string getPath(const std::string& file) const
+	std::string getPath(const std::string& file)
 	{
 		return paths[file];
 	}

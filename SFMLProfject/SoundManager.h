@@ -6,7 +6,7 @@
 struct SoundProperties
 {
 	//TODO
-	friend std::ifstream& operator>>(std::ifstream& ifs, SoundProperties& properties);
+	friend std::ifstream& operator>>(std::ifstream& ifs, SoundProperties& properties) { return ifs; }
 	std::string name;
 	float attenuation;
 	float pitch;
@@ -15,6 +15,7 @@ struct SoundProperties
 
 struct SoundData
 {
+	SoundData() {}
 	SoundData(std::string nam) : name(nam), isPaused(false) {}
 	std::string name;
 	bool isPaused;
