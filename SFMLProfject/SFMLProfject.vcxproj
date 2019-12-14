@@ -178,6 +178,7 @@
     <ClInclude Include="CBase.h" />
     <ClInclude Include="CPosition.h" />
     <ClInclude Include="CDrawable.h" />
+    <ClInclude Include="CState.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="FontManager.h" />
     <ClInclude Include="Game.h" />

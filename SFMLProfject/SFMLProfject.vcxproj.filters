@@ -200,5 +200,8 @@
     <ClInclude Include="Map.h">
       <Filter>Source Files\Map</Filter>
     </ClInclude>
+    <ClInclude Include="CState.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
