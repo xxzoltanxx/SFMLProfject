@@ -56,10 +56,6 @@ void Map::draw(sf::RenderTarget& target)
 		{
 			sf::Sprite& spriteFlyweight = tile.second->mData->tileSprite;
 			spriteFlyweight.setPosition(tile.second->mX, tile.second->mY);
-			if (tile.second->mX > 0 && tile.second->mY > 0)
-			{
-				int x = 1 + 1;
-			}
 			target.draw(spriteFlyweight);
 		}
 	}
