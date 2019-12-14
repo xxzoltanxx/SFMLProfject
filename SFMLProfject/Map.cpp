@@ -53,10 +53,6 @@ void Map::draw(sf::RenderTarget& target)
 	{
 		for (auto& tile : (*layer)->mTiles)
 		{
-			if (!isValidTile(*tile.second))
-			{
-				continue;
-			}
 			sf::Sprite& spriteFlyweight = tile.second->mData->tileSprite;
 			spriteFlyweight.setPosition(tile.second->mX, tile.second->mY);
 			if (tile.second->mX > 0 && tile.second->mY > 0)
@@ -66,9 +62,4 @@ void Map::draw(sf::RenderTarget& target)
 			target.draw(spriteFlyweight);
 		}
 	}
-}
-
-bool Map::isValidTile(const Tile& tile) const
-{
-	return tile.mData != nullptr;
 }

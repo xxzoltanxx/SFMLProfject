@@ -50,7 +50,6 @@ public:
 	void draw(sf::RenderTarget& target);
 
 private:
-	bool isValidTile(const Tile& tile) const;
 
 	MapBuilder* builder;
 	TileDataContainer mTileDataContainer;

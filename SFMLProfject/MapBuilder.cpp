@@ -80,7 +80,6 @@ void MapBuilderTiled::load(const std::string& file, Layers& mTiles, TileDataCont
 				chunkDataStream >> delimiter;
 				if (tileId == 0)
 				{
-					currentTileMap->mTiles[std::make_pair(xStart + chunkTileCounter / height, yStart + chunkTileCounter % height)] = new Tile(0, 0, nullptr);
 					chunkTileCounter++;
 					continue;
 				}
