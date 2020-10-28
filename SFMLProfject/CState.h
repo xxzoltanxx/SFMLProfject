@@ -4,6 +4,7 @@
 enum class EntityState
 {
 	None,
+	Jumping,
 	Attacking,
 	Dead
 };

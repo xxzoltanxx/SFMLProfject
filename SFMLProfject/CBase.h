@@ -7,7 +7,8 @@ enum class ComponentType
 	Position = 0,
 	SpriteSheet = 1,
 	Sprite = 2,
-	State = 3
+	State = 3,
+	Movable = 4
 };
 
 class CBase

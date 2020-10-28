@@ -176,6 +176,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="CBase.h" />
+    <ClInclude Include="CMovable.h" />
     <ClInclude Include="CPosition.h" />
     <ClInclude Include="CDrawable.h" />
     <ClInclude Include="CState.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="pugiconfig.hpp" />
     <ClInclude Include="pugixml.hpp" />
     <ClInclude Include="SBase.h" />
+    <ClInclude Include="SMovement.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteSheet.h" />
     <ClInclude Include="EntityManager.h" />

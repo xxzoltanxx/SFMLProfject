@@ -4,7 +4,6 @@
 enum class SystemEvent
 {
 	Spawned = 0,
-	EntityModified = 1
 };
 
 class EventQueue

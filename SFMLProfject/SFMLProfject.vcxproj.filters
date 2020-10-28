@@ -203,5 +203,11 @@
     <ClInclude Include="CState.h">
       <Filter>Source Files\ECS</Filter>
     </ClInclude>
+    <ClInclude Include="CMovable.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="SMovement.h">
+      <Filter>Source Files\ECS</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
